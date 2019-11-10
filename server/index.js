@@ -4,15 +4,18 @@ const app = express();
 const port = 5000;
 const path = require('path');
 const request = require('request');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 
 app.use('/:songid', express.static(path.join(__dirname, '../')));
 app.use(express.json());
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 
 app.get('/songs/:songid', (req, res) => {
   request(`http://localhost:5001/songs/${req.params.songid}`, (error, response, body) => {
-    if (error) return res.end();
+    if (error) {
+      console.log(error);
+      return res.status(500).end();
+    }
     res.send(JSON.parse(body));
   });
 });
@@ -25,7 +28,10 @@ app.post('/songs', (req, res) => {
     body: req.body
   };
   request(options, (error, response, body) => {
-    if (error) console.log(error);
+    if (error) {
+      console.log(error);
+      return res.status(500).end();
+    }
     res.end();
   });
 });
