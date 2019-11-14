@@ -6,6 +6,13 @@ const path = require('path');
 const request = require('request');
 // const morgan = require('morgan');
 
+app.get('/loaderio-5552de28f66f43faa84ce54fa2341e2a', function (req, res, next) {
+  var options = {root: path.join(__dirname, '../')};
+  res.sendFile('loaderio-5552de28f66f43faa84ce54fa2341e2a.txt', options, (err) => {
+    if (err) console.log('Error:', err);
+  });
+});
+
 app.use('/:songid', express.static(path.join(__dirname, '../')));
 app.use(express.json());
 // app.use(morgan('dev'));
