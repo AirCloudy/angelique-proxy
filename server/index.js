@@ -18,7 +18,7 @@ app.use(express.json());
 // app.use(morgan('dev'));
 
 app.get('/songs/:songid', (req, res) => {
-  request(`http://3.134.67.84:5001/songs/${req.params.songid}`, (error, response, body) => {
+  request(`http://3.135.31.114/songs/${req.params.songid}`, (error, response, body) => {
     if (error) {
       console.log(error);
       return res.status(500).end();
@@ -30,7 +30,7 @@ app.get('/songs/:songid', (req, res) => {
 app.post('/songs', (req, res) => {
   var options = {
     method: 'POST',
-    url: 'http://3.134.67.84:5001/songs',
+    url: 'http://3.135.31.114/songs',
     json: true,
     body: req.body
   };
